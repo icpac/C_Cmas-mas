@@ -1,3 +1,8 @@
+/*
+ _autor_    Tlacaelel Icpac
+ _correo_  tlacaelel.icpac@gmail.com
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
