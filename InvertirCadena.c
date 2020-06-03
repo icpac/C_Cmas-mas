@@ -6,24 +6,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_LINEA 100
+#define MAX_LINEA 1000
 #define PRUEBA 1
 
-char* lineas = "Hola mundo \n Como has estado \n jala bien \0";
-int POS;
+char* Lineas = "Hola mundo \n Como has estado \n Jala muy bien\t que pasa\0";
 
-
-/* Vamos a usar la misma cadena para alojar la inversa. */
-void invertir (char *cad)
+/* Invierte la cadena recibida */
+void invertir(char* cad)
 {
-    /*Hello world\n*/
-    /*\ndlrow olleH*/
+    /*
+    Hola mundo\0
+    o        H\0
+    od      oH\o
+    */
     int posLen = 0;
     int posIzq = 0;
     int tmp;
 
     while (cad[posLen] != '\0')
-        posLen++;
+        ++posLen;
     --posLen;
 
     for (; posLen > posIzq; --posLen, ++posIzq)
@@ -34,24 +35,31 @@ void invertir (char *cad)
     }
 }
 
-int leeCaracter(int opc)
+/* Regresa el caracter leido */
+int leeCaracter(int opc, int *POS)
 {
     if (opc == PRUEBA)
     {
-        if (lineas[POS] != '\0')
-            return lineas[POS++];
+        if (Lineas[*POS] != '\0')
+            return Lineas[(*POS)++];
         return EOF;
     }
-    else
-        return getchar();
+
+    return getchar();
 }
 
-int leeLinea(char* linea)
+/* regresa la longitud de la linea leida */
+int leeLinea(char* linea, int *POS)
 {
+    /*
+    leeCaracter
+    linea[pos] = c
+    EOF \n
+    */
     int c;
     int pos = 0;
 
-    while ((c = leeCaracter(/*PRUEBA*/2)) != EOF && c != '\n')
+    while ((c = leeCaracter(PRUEBA, POS)) != EOF && c != '\n')
     {
         linea[pos++] = c;
     }
@@ -62,14 +70,13 @@ int leeLinea(char* linea)
 
 int main()
 {
-    char linea [MAX_LINEA];
+    int POS = 0;
+    char linea[MAX_LINEA];
 
-    POS = 0;
-    while (leeLinea(linea))
+    while (leeLinea(linea, &POS))
     {
         invertir(linea);
         printf("%s\n", linea);
     }
-
     return 0;
 }
