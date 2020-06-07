@@ -1,5 +1,7 @@
-/* Carlos Javier López Cruz
-javier1604@gmail.com
+/*
+ _autor_    Tlacaelel Icpac
+ _correo_  tlacaelel.icpac@gmail.com
+
      *
     * *
    *   *
